@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import HttpsRedirect from 'react-https-redirect';
 import { Provider } from 'react-redux';
 
-import './index.css';
+import 'css/index.css';
+import 'css/landingPage.css';
+import 'css/button.css';
 
 import router from 'router';
 import configureStore from 'utils/configureStore';

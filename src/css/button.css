@@ -1,0 +1,21 @@
+.button {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 40px;
+  max-width: 200px;
+  height: 40px;
+  padding: 5px;
+  background-color: #ffa883;
+  color: white;
+  border-radius: 1px;
+  font-size: 18px;
+}
+
+.button:hover {
+  cursor: pointer;
+  filter: brightness(80%);
+  transition-duration: 0.3s;
+}
