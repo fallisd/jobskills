@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import 'css/index.css';
 import 'css/landingPage.css';
 import 'css/searchPage.css';
+import 'css/resultPage.css';
 
 import 'css/button.css';
 import 'css/textinput.css';

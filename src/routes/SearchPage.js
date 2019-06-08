@@ -29,7 +29,7 @@ class SearchPage extends Component {
       options: [],
     };
 
-    this.updateOptions = debounce(this.updateOptions, 800);
+    this.updateOptions = debounce(this.updateOptions, 200);
   }
 
   updateOptions = async (value) => {
@@ -47,7 +47,6 @@ class SearchPage extends Component {
   handleSubmit = async () => {
     const { searchType, value } = this.state;
     const { history } = this.props;
-    // history.push(`/${searchType.toLowerCase()}/value`);
     try {
       let res = await fetch(`http://api.dataatwork.org/v1/${searchType.toLowerCase()}s/autocomplete?contains="${value}"`);
       res = await res.json();
@@ -64,7 +63,7 @@ class SearchPage extends Component {
 
   handleChange = (value) => {
     this.setState({ value, invalid: false });
-    if (value.length > 2) {
+    if (value.length > 1) {
       this.updateOptions(value);
     } else {
       this.setState({ options: [] });
@@ -111,6 +110,11 @@ class SearchPage extends Component {
                 onClick={this.handleSubmit}
               />
             </div>
+            <Button
+              icon={<i className='fas fa-arrow-left fa-2x' />}
+              className='result-page-back-button'
+              onClick={() => this.setState({ searchType: null })}
+            />
           </div>
         )}
       </div>
