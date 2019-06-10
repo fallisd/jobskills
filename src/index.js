@@ -12,6 +12,7 @@ import 'css/chartPage.css';
 import 'css/button.css';
 import 'css/textinput.css';
 import 'css/barchart.css';
+import 'css/loading.css';
 
 import router from 'router';
 import configureStore from 'utils/configureStore';

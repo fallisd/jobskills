@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import Button from 'components/inputs/Button';
 import ResultButton from 'components/inputs/ResultButton';
+import Loading from 'components/icons/Loading';
 
 import fetchJobSkillIfNeeded from 'actions/resultActions';
 
@@ -39,6 +40,7 @@ class SearchPage extends Component {
     this.state = {
       results: [],
       numberOfResults: 20,
+      resultsLoading: true,
     };
 
     this.updateOptions = debounce(this.updateOptions, 800);
@@ -52,9 +54,9 @@ class SearchPage extends Component {
       res = await res.json();
       const fullResults = res.skills || res.jobs;
       const results = fullResults.map(item => item.skill_uuid || item.job_uuid);
-      this.setState({ results, noResultsFound: false });
+      this.setState({ results, noResultsFound: false, resultsLoading: false });
     } catch (err) {
-      this.setState({ noResultsFound: true, results: [] });
+      this.setState({ noResultsFound: true, results: [], resultsLoading: false });
     }
   }
 
@@ -76,7 +78,23 @@ class SearchPage extends Component {
       results,
       numberOfResults,
       noResultsFound,
+      resultsLoading,
     } = this.state;
+
+    let titleDisplay = '...';
+    if (!loading) {
+      titleDisplay = name;
+    }
+
+    if (resultsLoading) {
+      return (
+        <div className={`result-page-container ${colorMap[searchType]}`}>
+          <div className='result-page-heading'>{`${searchType}: ${titleDisplay}`}</div>
+          <Loading />
+        </div>
+      );
+    }
+
     let resultsDisplay = null;
     if (results[0]) {
       resultsDisplay = results.slice(0, numberOfResults).map(result => (
@@ -96,10 +114,6 @@ class SearchPage extends Component {
     );
     if (numberOfResults >= results.length) {
       moreDisplay = null;
-    }
-    let titleDisplay = '...';
-    if (!loading) {
-      titleDisplay = name;
     }
     let noResultsMessage = null;
     if (noResultsFound) {
@@ -136,8 +150,8 @@ const mapStateToProps = (state, props) => {
     return { ...data };
   }
   return {
-    loading: true,
     name: '',
+    loading: true,
   };
 };
 
