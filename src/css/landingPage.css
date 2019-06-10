@@ -6,24 +6,33 @@
 }
 
 .landing-page-background-overlay {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
   height: 100%;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background-color:rgba(200, 200, 200, 0.5);
 }
 
 .landing-page-title {
   color: white;
-  font-size: 9rem;  
+  font-size: 5rem;  
   font-weight: bold;
 }
 
 .landing-page-heading {
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .landing-page-text {

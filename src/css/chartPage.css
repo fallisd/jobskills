@@ -1,9 +1,12 @@
 .chart-page-heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   color: white;
   font-size: 2rem;
   padding: 30px;
   padding-left: 200px;
   padding-right: 200px;
-  flex-wrap: wrap; 
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; 
 }
