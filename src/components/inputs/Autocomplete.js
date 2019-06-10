@@ -32,6 +32,14 @@ class Autocomplete extends Component {
     }
   }
 
+  handleSelect = (value) => {
+    const { onSubmit } = this.props;
+    this.handleChange(value);
+    if (onSubmit) {
+      onSubmit(value);
+    }
+  }
+
   render() {
     const { value } = this.state;
     const { options } = this.props;
@@ -41,7 +49,7 @@ class Autocomplete extends Component {
         value={value}
         getItemValue={item => item}
         onChange={e => this.handleChange(e.target.value)}
-        onSelect={val => this.handleChange(val)}
+        onSelect={val => this.handleSelect(val)}
         shouldItemRender={(item, val) => (
           item.toLowerCase().indexOf(val.toLowerCase()) > -1
         )}
