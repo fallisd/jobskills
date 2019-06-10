@@ -37,6 +37,9 @@ class SearchPage extends Component {
     try {
       let res = await fetch(`http://api.dataatwork.org/v1/${searchType.toLowerCase()}s/autocomplete?contains="${value}"`);
       res = await res.json();
+      res.sort((a, b) => (
+        a.suggestion.length - b.suggestion.length
+      ));
       const options = res.slice(0, 4).map(item => item.suggestion);
       this.setState({ options });
     } catch (err) {
