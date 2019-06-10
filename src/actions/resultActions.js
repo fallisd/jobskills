@@ -32,7 +32,7 @@ function fetchJobSkill(searchType, uuid) {
   return async (dispatch) => {
     dispatch(requestJobSkill(searchType, uuid));
     try {
-      let res = await fetch(`http://api.dataatwork.org/v1/${searchType.toLowerCase()}/${uuid}`);
+      let res = await fetch(`https://api.dataatwork.org/v1/${searchType.toLowerCase()}/${uuid}`);
       res = await res.json();
       const name = res.title || res.skill_name;
       dispatch(requestJobSkillSuccess(searchType, uuid, name));

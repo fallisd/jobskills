@@ -50,7 +50,7 @@ class SearchPage extends Component {
     const { match: { params: { uuid } }, searchType, dispatch } = this.props;
     dispatch(fetchJobSkillIfNeeded(`${searchType.toLowerCase()}s`, uuid));
     try {
-      let res = await fetch(`http://api.dataatwork.org/v1/${searchType.toLowerCase()}s/${uuid}/related_${oppositeJobSkill[searchType]}`);
+      let res = await fetch(`https://api.dataatwork.org/v1/${searchType.toLowerCase()}s/${uuid}/related_${oppositeJobSkill[searchType]}`);
       res = await res.json();
       const fullResults = res.skills || res.jobs;
       const results = fullResults.map(item => item.skill_uuid || item.job_uuid);

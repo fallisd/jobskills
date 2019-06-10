@@ -44,7 +44,7 @@ class ChartPage extends Component {
   componentDidMount() {
     jobs.forEach(async (job) => {
       try {
-        let res = await fetch(`http://api.dataatwork.org/v1/jobs/${job.uuid}/related_skills`);
+        let res = await fetch(`https://api.dataatwork.org/v1/jobs/${job.uuid}/related_skills`);
         res = await res.json();
         res.skills.forEach((skill) => {
           if (skill.skill_uuid === '31c13f47ad87dd7baa2d558a91e0fbb9') {

@@ -35,7 +35,7 @@ class SearchPage extends Component {
   updateOptions = async (value) => {
     const { searchType } = this.state;
     try {
-      let res = await fetch(`http://api.dataatwork.org/v1/${searchType.toLowerCase()}s/autocomplete?contains="${value}"`);
+      let res = await fetch(`https://api.dataatwork.org/v1/${searchType.toLowerCase()}s/autocomplete?contains="${value}"`);
       res = await res.json();
       res.sort((a, b) => (
         a.suggestion.length - b.suggestion.length
@@ -55,7 +55,7 @@ class SearchPage extends Component {
       value = newValue;
     }
     try {
-      let res = await fetch(`http://api.dataatwork.org/v1/${searchType.toLowerCase()}s/autocomplete?contains="${value}"`);
+      let res = await fetch(`https://api.dataatwork.org/v1/${searchType.toLowerCase()}s/autocomplete?contains="${value}"`);
       res = await res.json();
       const selected = res.filter(item => item.suggestion.toLowerCase() === value.toLowerCase());
       if (selected.length === 1) {
