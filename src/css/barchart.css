@@ -1,0 +1,9 @@
+.single-bar-group:hover {
+  opacity: 0.5;
+  transition-duration: .5s;
+  text-anchor: middle;
+}
+
+.single-bar-group-name-label {
+  font-weight: bold;
+}

@@ -72,6 +72,7 @@ class SearchPage extends Component {
 
   render() {
     const { searchType, options, invalid } = this.state;
+    const { history } = this.props;
     const invalidClassname = invalid ? 'search-page-invalid' : '';
     return (
       <div className='search-page-container'>
@@ -114,6 +115,11 @@ class SearchPage extends Component {
               icon={<i className='fas fa-arrow-left fa-2x' />}
               className='result-page-back-button'
               onClick={() => this.setState({ searchType: null })}
+            />
+            <Button
+              icon={<i className='fas fa-chart-bar fa-2x' />}
+              className='search-page-graph-button'
+              onClick={() => history.push('/chart')}
             />
           </div>
         )}

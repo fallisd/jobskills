@@ -1,0 +1,9 @@
+.chart-page-heading {
+  display: flex;
+  color: white;
+  font-size: 2rem;
+  padding: 30px;
+  padding-left: 200px;
+  padding-right: 200px;
+  flex-wrap: wrap; 
+}

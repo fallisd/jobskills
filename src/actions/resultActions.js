@@ -1,6 +1,5 @@
 import * as ActionNames from 'utils/actionNames';
 
-
 function requestJobSkillSuccess(searchType, uuid, name) {
   if (searchType === 'jobs') {
     return {

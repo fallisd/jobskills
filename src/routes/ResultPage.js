@@ -38,7 +38,7 @@ class SearchPage extends Component {
     super(props);
     this.state = {
       results: [],
-      numberOfResults: 10,
+      numberOfResults: 20,
     };
 
     this.updateOptions = debounce(this.updateOptions, 800);
@@ -72,7 +72,11 @@ class SearchPage extends Component {
       name,
       history,
     } = this.props;
-    const { results, numberOfResults, noResultsFound } = this.state;
+    const {
+      results,
+      numberOfResults,
+      noResultsFound,
+    } = this.state;
     let resultsDisplay = null;
     if (results[0]) {
       resultsDisplay = results.slice(0, numberOfResults).map(result => (
