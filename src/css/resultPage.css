@@ -14,8 +14,16 @@
 }
 
 .result-page-heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; 
+ -ms-flex-wrap: wrap;
+     flex-wrap: wrap;   
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
   padding: 20px;
 }
 

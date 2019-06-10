@@ -18,13 +18,13 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  min-width: 400px;
+  min-width: 300px;
   height: 40px;
   padding: 5px;
   background-color: white;
   color: gray;
   margin-bottom: 5px;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .autocomplete-item {
