@@ -47,9 +47,13 @@ class SearchPage extends Component {
     }
   }
 
-  handleSubmit = async () => {
-    const { searchType, value } = this.state;
+  handleSubmit = async (newValue) => {
+    const { searchType } = this.state;
+    let { value } = this.state;
     const { history } = this.props;
+    if (newValue) {
+      value = newValue;
+    }
     try {
       let res = await fetch(`http://api.dataatwork.org/v1/${searchType.toLowerCase()}s/autocomplete?contains="${value}"`);
       res = await res.json();
