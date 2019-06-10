@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-autofocus  */
+
 import React, { Component } from 'react';
 import ReactAutocomplete from 'react-autocomplete';
 import PropTypes from 'prop-types';
@@ -47,6 +49,7 @@ class Autocomplete extends Component {
           <input
             className='autocomplete-input'
             spellCheck='false'
+            autoFocus
             {...props}
           />
         )}
