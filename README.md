@@ -1,6 +1,14 @@
+# Job Skills
+
+a React and Redux web application that displays lists of jobs and skills taken from the [Open Skills API](https://github.com/workforce-data-initiative/skills-api).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+
+Before running any of the available scripts, from the root directory run 
+
+### `npm install`
 
 In the project directory, you can run:
 
@@ -27,42 +35,43 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Overview
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The application allows users to search for jobs and view a list of skills associated with that job. Alternatively, the user is able to search for skills and find a list of jobs associated with that skill. From the display of results the user is able to navigate between the skills and results pages by selecting one of the results.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application is the work of approximately 9 hours of coding and testing and 2 hours of planning and documenting.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The application is laid out into four main screens. The design and possible improvements to each of these is described in more detail below.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Landing Page
 
-## Learn More
+The landing page is a simple screen that displays the name of the application and a brief description. It makes use of the Button component that was designed to meet the Airbnb JavaScript Style Guide for accessibility. By selecting the enter button, the user is able to navigate to the main search screen of the application. The page could have been removed and the information moved to the search screen, but I felt like it would look cluttered when searching for jobs and skills.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Possible Improvements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* The background image should not be rendered on mobile to improve load time and data usage.
 
-### Code Splitting
+### Search Page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+The search page allows the user to select a search-type (jobs, or skills). Once selected the user is shown a search bar that they can search for jobs or skills. The search bar is a custom Autocomplete component that will update as the user modifies the text in the search bar. A change in value of the input will trigger and API request that returns a list of possibilities that contain the value of the input string. The list is sorted and the most likely search results are displayed as options. To reduce the number of requests the Autocomplete component only makes the request if the user has stopped typing for a short amount of time. It also does not make the request if too few characters are entered which would lead to a slow request with too many possible options. Selecting an item from the list, or selecting the go Button, navigates the user to the results page associated with the job or skill. If an invalid value is submitted the user is notified and they are not navigated to the results page.
 
-### Analyzing the Bundle Size
+#### Possible improvements
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+* The API request should be moved to an action creator in Redux and triggered by dispatching instead of directly from the component. This will prevent setState from sometimes being called on an unmounted component.
+* The results page could be separated into two components for job search and skill search. A presentational component could be shared by the components providing different props rather than handling both cases within the component which caused the code to be cluttered.
 
-### Making a Progressive Web App
+### Results Page 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The results screen receives the unique ID of the job or skill as a prop which is taken from the url. After mounting the screen makes a request to the api for the name of the job/skill as well as a list of the unique IDs of the associated jobs/skills. A subset of the related jobs/skills is displayed as a list of buttons that are connected to the redux store. The buttons are given the unique identifier as a prop and they dispatch an action to request the name if needed. If it has been requested earlier in the session the value can be found in the store. If it has not yet been requested the value will be requested from the API and put in the store. This will prevent repeated requests for the same value. Selecting the More button will cause more related jobs/skills to be rendered. This does not trigger an API request as all of the related jobs/skills are already known. Selecting any of the jobs/skills will navigate the user to the associated page. THe user can return to the search page by selecting the arrow in the corner.
 
-### Advanced Configuration
+### Chart Page
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+From the search page, a user may navigate to a bar chart which displays the importance of skills to jobs. The labels of the chart have been hard coded and the values of the importance are retrieved by an API request after mounting. Time constraints lead to some of the data being hard coded but the Bar Chart component is generalized and the page could easily be generalized to work for any combination of jobs and skills.
 
-### Deployment
+#### Possible improvements
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+* The page is not mobile friendly. The chart dimensions are taken as props and should be modified based on window parameters.
 
-### `npm run build` fails to minify
+### Overall
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Overall, the application is functional. The application is somewhat responsive as it is mostly built using flexbox components, but it needs a bit more work to be super mobile friendly. It could also use some additional functionality around failing API requests, in terms of informing the user what has happened. There was also a bit of difficulty caused by the Open Skills API, which seems to have out of date documentation. The data shape and information return by the actual API is not consistent with what is shown in the documentation. With a bit more work the application could be very robust.
